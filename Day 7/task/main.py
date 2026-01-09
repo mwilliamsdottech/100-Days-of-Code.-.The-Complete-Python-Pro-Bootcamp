@@ -1,13 +1,35 @@
 import random
 
 def game_over():
+    print(f"\nAwww, the word was {chosen_word}")
     print("\nGame Over. Try again?")
 
 def win_msg():
-    phrases = ["\nYou won!", "\nYou're awesome!", "\nYou rock!", "\nAmazing!", "\nCool!", "\nFantastic!", "\nPhenomenal!", "\nWoo Hoo!"]
+    phrases = [
+    "You guessed it! Nicely done!",
+    "That’s it—you got it!",
+    "You nailed the word!",
+    "Yes! That was the word!",
+    "Correct! You did it!",
+    "That’s the one—great job!",
+    "You found it! Well played!",
+    "Bingo! That’s the word!",
+    "You got the answer!",
+    "Right on! You guessed it!",
+    "Fantastic! You cracked it!",
+    "Spot on! That’s the word!",
+    "Amazing! You got it right!",
+    "Perfect! That was it!",
+    "Woohoo! You guessed correctly!",
+    "Bravo! That’s the word!",
+    "Excellent! You found it!",
+    "Yes! You got it spot-on!",
+    "Impressive! You nailed it!",
+    "Hooray! That’s the right word!"
+]
     print(random.choice(phrases))
 
-word_list = [
+hard_word_list = [
     "ANTELOPE",
     "BUFFALO",
     "CARIBOU",
@@ -60,46 +82,236 @@ word_list = [
     "HORSESHOECRAB"
 ]
 
+med_word_list = [
+    "ELEPHANT",
+    "GIRAFFE",
+    "KANGAROO",
+    "DOLPHIN",
+    "LEOPARD",
+    "CHEETAH",
+    "PENGUIN",
+    "OSTRICH",
+    "PEACOCK",
+    "RACCOON",
+    "SQUIRREL",
+    "RABBIT",
+    "TURTLE",
+    "OCTOPUS",
+    "BUTTERFLY",
+    "LADYBUG",
+    "BEETLE",
+    "WALRUS",
+    "PANTHER",
+    "JAGUAR",
+    "COUGAR",
+    "MANATEE",
+    "BUFFALO",
+    "CAMEL",
+    "ZEBRA",
+    "FERRET",
+    "MEERKAT",
+    "MOOSE",
+    "IGUANA",
+    "TOUCAN",
+    "LOBSTER",
+    "CRABBY",
+    "HERON",
+    "STORK",
+    "ELK",
+    "LYNX",
+    "GAZELLE",
+    "TAPIR",
+    "MARMOT",
+    "OTTER",
+    "DONKEY",
+    "MONKEY",
+    "HORSE",
+    "PIGEON",
+    "RABBIT",
+    "TURKEY",
+    "CAMEL",
+    "LAMB",
+    "GOOSE"
+]
 
-chosen_word = random.choice(word_list)
+easy_word_list = [
+    "CAT",
+    "DOG",
+    "COW",
+    "PIG",
+    "HEN",
+    "BAT",
+    "FOX",
+    "APE",
+    "BEE",
+    "OWL",
+    "RAT",
+    "LAMB",
+    "DUCK",
+    "MULE",
+    "FROG",
+    "TOAD",
+    "SEAL",
+    "PONY",
+    "CROW",
+    "LION",
+    "BEAR",
+    "GOAT",
+    "DEER",
+    "SWAN",
+    "MOTH",
+    "CRAB",
+    "TUNA",
+    "FISH",
+    "DUCK",
+    "ANT",
+    "BAT",
+]
 
-placeholder = ""
-word_length = len(chosen_word)
-for position in range(word_length):
-    placeholder += "_"
-print(placeholder)
+print(
+'''
+██╗    ██╗ ██████╗ ██████╗ ██████╗        
+██║    ██║██╔═══██╗██╔══██╗██╔══██╗       
+██║ █╗ ██║██║   ██║██████╔╝██║  ██║       
+██║███╗██║██║   ██║██╔══██╗██║  ██║       
+╚███╔███╔╝╚██████╔╝██║  ██║██████╔╝       
+ ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═════╝        
+ ██████╗ ██╗   ██╗███████╗███████╗███████╗
+██╔════╝ ██║   ██║██╔════╝██╔════╝██╔════╝
+██║  ███╗██║   ██║█████╗  ███████╗███████╗
+██║   ██║██║   ██║██╔══╝  ╚════██║╚════██║
+╚██████╔╝╚██████╔╝███████╗███████║███████║
+ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚══════╝
+     CATEGORY: ANIMALS & BUGS                       
+''')
 
-# While loop to let the user guess again.
-guesses_remaining = 5
-correct_letters = []
+level_choice = input("Please choose a level:"
+      "\n1. Easy"
+      "\n2. Medium"
+      "\n3. Hard"
+        "\n\n1, 2, or 3? ")
+print("\n")
 
-while guesses_remaining > 0:
-    guess = input("Guess a letter: ").upper()
-    display = ""
-    if guess in chosen_word:
-        #Keep the previous correct letters on display.
-        for letter in chosen_word:
-            if letter == guess:
-                display += letter
-                correct_letters.append(guess)
+if level_choice == "3":
+        chosen_word = random.choice(hard_word_list)
+        placeholder = ""
+        word_length = len(chosen_word)
+        for position in range(word_length):
+            placeholder += "_"
+        print(placeholder)
+
+        guesses_remaining = 6
+        correct_letters = []
+
+        while guesses_remaining > 0:
+            guess = input("Guess a letter: ").upper()
+
+            display = ""
+
+            if guess in chosen_word:
+                for letter in chosen_word:
+                    if letter == guess:
+                        display += letter
+                        correct_letters.append(guess)
+                    elif letter in correct_letters:
+                        display += letter
+                    else:
+                        display += "_"
                 print(f"\n{display}")
-            elif letter in correct_letters:
-                display += letter
-                print(f"\n{display}")
+
+                if "_" not in display:
+                     win_msg()
+                     break
             else:
-                display += "_"
-
-        # if "_" not in display:
-        #     win_msg()
-        #     break
-    else:
-        guesses_remaining -= 1
-        if guesses_remaining > 0:
-            print(f"\nTry again. {guesses_remaining} guesses remaining.")
-        elif guesses_remaining == 1:
-            print(f"\nTry again. {guesses_remaining} guess remaining.")
-        elif guesses_remaining == 0:
+                guesses_remaining -= 1
+                if guesses_remaining > 1:
+                    print(f"\nTry again. {guesses_remaining} guesses remaining.")
+                elif guesses_remaining == 1:
+                    print(f"\nTry again. {guesses_remaining} guess remaining.")
+                elif guesses_remaining == 0:
+                    game_over()
+                    break
+        else:
             game_over()
-            break
+elif level_choice == "2":
+    chosen_word = random.choice(med_word_list)
+    placeholder = ""
+    word_length = len(chosen_word)
+    for position in range(word_length):
+        placeholder += "_"
+    print(placeholder)
+
+    guesses_remaining = 6
+    correct_letters = []
+
+    while guesses_remaining > 0:
+        guess = input("Guess a letter: ").upper()
+
+        display = ""
+
+        if guess in chosen_word:
+            for letter in chosen_word:
+                if letter == guess:
+                    display += letter
+                    correct_letters.append(guess)
+                elif letter in correct_letters:
+                    display += letter
+                else:
+                    display += "_"
+            print(f"\n{display}")
+
+            if "_" not in display:
+                win_msg()
+                break
+        else:
+            guesses_remaining -= 1
+            if guesses_remaining > 1:
+                print(f"\nTry again. {guesses_remaining} guesses remaining.")
+            elif guesses_remaining == 1:
+                print(f"\nTry again. {guesses_remaining} guess remaining.")
+            elif guesses_remaining == 0:
+                game_over()
+                break
+    else:
+        game_over()
 else:
-    game_over()
+    chosen_word = random.choice(easy_word_list)
+    placeholder = ""
+    word_length = len(chosen_word)
+    for position in range(word_length):
+        placeholder += "_"
+    print(placeholder)
+
+    guesses_remaining = 6
+    correct_letters = []
+
+    while guesses_remaining > 0:
+        guess = input("Guess a letter: ").upper()
+
+        display = ""
+
+        if guess in chosen_word:
+            for letter in chosen_word:
+                if letter == guess:
+                    display += letter
+                    correct_letters.append(guess)
+                elif letter in correct_letters:
+                    display += letter
+                else:
+                    display += "_"
+            print(f"\n{display}")
+
+            if "_" not in display:
+                win_msg()
+                break
+        else:
+            guesses_remaining -= 1
+            if guesses_remaining > 1:
+                print(f"\nTry again. {guesses_remaining} guesses remaining.")
+            elif guesses_remaining == 1:
+                print(f"\nTry again. {guesses_remaining} guess remaining.")
+            elif guesses_remaining == 0:
+                game_over()
+                break
+    else:
+        game_over()
