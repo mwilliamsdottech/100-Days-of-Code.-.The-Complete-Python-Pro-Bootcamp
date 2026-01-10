@@ -1,10 +1,25 @@
 import random
 
 def game_over():
-    print(f"\nAwww, the word was {chosen_word}")
-    print("\nGame Over. Try again?")
+    print('''
+██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ 
+██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗
+██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝
+██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗
+╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║
+ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝
+''')
+    print(f"\nThe word was {chosen_word}\nTry again?")
 
 def win_msg():
+    print('''
+██╗   ██╗ ██████╗ ██╗   ██╗    ██╗    ██╗██╗███╗   ██╗██╗
+╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║    ██║██║████╗  ██║██║
+ ╚████╔╝ ██║   ██║██║   ██║    ██║ █╗ ██║██║██╔██╗ ██║██║
+  ╚██╔╝  ██║   ██║██║   ██║    ██║███╗██║██║██║╚██╗██║╚═╝
+   ██║   ╚██████╔╝╚██████╔╝    ╚███╔███╔╝██║██║ ╚████║██╗
+   ╚═╝    ╚═════╝  ╚═════╝      ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝
+''')
     phrases = [
     "You guessed it! Nicely done!",
     "That’s it—you got it!",
@@ -198,7 +213,7 @@ if level_choice == "3":
         word_length = len(chosen_word)
         for position in range(word_length):
             placeholder += "_"
-        print(placeholder)
+        print(f"The word is: {placeholder}")
 
         guesses_remaining = 6
         correct_letters = []
@@ -239,7 +254,7 @@ elif level_choice == "2":
     word_length = len(chosen_word)
     for position in range(word_length):
         placeholder += "_"
-    print(placeholder)
+    print(f"The word is: {placeholder}")
 
     guesses_remaining = 6
     correct_letters = []
@@ -280,7 +295,7 @@ else:
     word_length = len(chosen_word)
     for position in range(word_length):
         placeholder += "_"
-    print(placeholder)
+    print(f"The word is: {placeholder}")
 
     guesses_remaining = 6
     correct_letters = []
