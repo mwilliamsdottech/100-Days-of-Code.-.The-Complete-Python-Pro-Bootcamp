@@ -1,332 +1,60 @@
 import random
+import hangman_words.py
+# TODO-1: - Update the word list to use the 'word_list' from hangman_words.py
+import hangman_words.py
+lives = 6
 
-def game_over():
-    print('''
-██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ 
-██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗
-██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝
-██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗
-╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║
- ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝
-''')
-    print(f"\nThe word was {chosen_word}\nTry again?")
+# TODO-3: - Import the logo from hangman_art.py and print it at the start of the game.
+print(logo) from h
 
-def win_msg():
-    print('''
-██╗   ██╗ ██████╗ ██╗   ██╗    ██╗    ██╗██╗███╗   ██╗██╗
-╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║    ██║██║████╗  ██║██║
- ╚████╔╝ ██║   ██║██║   ██║    ██║ █╗ ██║██║██╔██╗ ██║██║
-  ╚██╔╝  ██║   ██║██║   ██║    ██║███╗██║██║██║╚██╗██║╚═╝
-   ██║   ╚██████╔╝╚██████╔╝    ╚███╔███╔╝██║██║ ╚████║██╗
-   ╚═╝    ╚═════╝  ╚═════╝      ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝
-''')
-    phrases = [
-    "You guessed it! Nicely done!",
-    "That’s it—you got it!",
-    "You nailed the word!",
-    "Yes! That was the word!",
-    "Correct! You did it!",
-    "That’s the one—great job!",
-    "You found it! Well played!",
-    "Bingo! That’s the word!",
-    "You got the answer!",
-    "Right on! You guessed it!",
-    "Fantastic! You cracked it!",
-    "Spot on! That’s the word!",
-    "Amazing! You got it right!",
-    "Perfect! That was it!",
-    "Woohoo! You guessed correctly!",
-    "Bravo! That’s the word!",
-    "Excellent! You found it!",
-    "Yes! You got it spot-on!",
-    "Impressive! You nailed it!",
-    "Hooray! That’s the right word!"
-]
-    print(random.choice(phrases))
+chosen_word = random.choice(word_list)
+print(chosen_word)
 
-hard_word_list = [
-    "ANTELOPE",
-    "BUFFALO",
-    "CARIBOU",
-    "COYOTE",
-    "BADGER",
-    "FERRET",
-    "MEERKAT",
-    "OTTER",
-    "MONGOOSE",
-    "PORCUPINE",
-    "ARMADILLO",
-    "HEDGEHOG",
-    "WOLVERINE",
-    "MARMOT",
-    "MUSKRAT",
-    "WOODCHUCK",
-    "GAZELLE",
-    "IBIS",
-    "HERON",
-    "PUFFIN",
-    "CORMORANT",
-    "PELICAN",
-    "KINGFISHER",
-    "ROADRUNNER",
-    "TORTOISE",
-    "MONITOR",
-    "CHAMELEON",
-    "GECKO",
-    "ANACONDA",
-    "PYTHON",
-    "COBRA",
-    "MANTA",
-    "STINGRAY",
-    "OCTOPUS",
-    "CUTTLEFISH",
-    "LOBSTER",
-    "CRAYFISH",
-    "SCORPION",
-    "TARANTULA",
-    "CENTIPEDE",
-    "MILLIPEDE",
-    "BUTTERFLY",
-    "DRAGONFLY",
-    "GRASSHOPPER",
-    "PRAYINGMANTIS",
-    "CATERPILLAR",
-    "SALAMANDER",
-    "NEWT",
-    "FIREANT",
-    "HORSESHOECRAB"
-]
+placeholder = ""
+word_length = len(chosen_word)
+for position in range(word_length):
+    placeholder += "_"
+print("Word to guess: " + placeholder)
 
-med_word_list = [
-    "ELEPHANT",
-    "GIRAFFE",
-    "KANGAROO",
-    "DOLPHIN",
-    "LEOPARD",
-    "CHEETAH",
-    "PENGUIN",
-    "OSTRICH",
-    "PEACOCK",
-    "RACCOON",
-    "SQUIRREL",
-    "RABBIT",
-    "TURTLE",
-    "OCTOPUS",
-    "BUTTERFLY",
-    "LADYBUG",
-    "BEETLE",
-    "WALRUS",
-    "PANTHER",
-    "JAGUAR",
-    "COUGAR",
-    "MANATEE",
-    "BUFFALO",
-    "CAMEL",
-    "ZEBRA",
-    "FERRET",
-    "MEERKAT",
-    "MOOSE",
-    "IGUANA",
-    "TOUCAN",
-    "LOBSTER",
-    "CRABBY",
-    "HERON",
-    "STORK",
-    "ELK",
-    "LYNX",
-    "GAZELLE",
-    "TAPIR",
-    "MARMOT",
-    "OTTER",
-    "DONKEY",
-    "MONKEY",
-    "HORSE",
-    "PIGEON",
-    "RABBIT",
-    "TURKEY",
-    "CAMEL",
-    "LAMB",
-    "GOOSE"
-]
+game_over = False
+correct_letters = []
 
-easy_word_list = [
-    "CAT",
-    "DOG",
-    "COW",
-    "PIG",
-    "HEN",
-    "BAT",
-    "FOX",
-    "APE",
-    "BEE",
-    "OWL",
-    "RAT",
-    "LAMB",
-    "DUCK",
-    "MULE",
-    "FROG",
-    "TOAD",
-    "SEAL",
-    "PONY",
-    "CROW",
-    "LION",
-    "BEAR",
-    "GOAT",
-    "DEER",
-    "SWAN",
-    "MOTH",
-    "CRAB",
-    "TUNA",
-    "FISH",
-    "DUCK",
-    "ANT",
-    "BAT",
-]
+while not game_over:
 
-print(
-'''
-██╗    ██╗ ██████╗ ██████╗ ██████╗        
-██║    ██║██╔═══██╗██╔══██╗██╔══██╗       
-██║ █╗ ██║██║   ██║██████╔╝██║  ██║       
-██║███╗██║██║   ██║██╔══██╗██║  ██║       
-╚███╔███╔╝╚██████╔╝██║  ██║██████╔╝       
- ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═════╝        
- ██████╗ ██╗   ██╗███████╗███████╗███████╗
-██╔════╝ ██║   ██║██╔════╝██╔════╝██╔════╝
-██║  ███╗██║   ██║█████╗  ███████╗███████╗
-██║   ██║██║   ██║██╔══╝  ╚════██║╚════██║
-╚██████╔╝╚██████╔╝███████╗███████║███████║
- ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚══════╝
-     CATEGORY: ANIMALS & BUGS                       
-''')
+    # TODO-6: - Update the code below to tell the user how many lives they have left.
+    print("****************************<???>/6 LIVES LEFT****************************")
+    guess = input("Guess a letter: ").lower()
 
-level_choice = input("Please choose a level:"
-      "\n1. Easy"
-      "\n2. Medium"
-      "\n3. Hard"
-        "\n\n1, 2, or 3? ")
-print("\n")
+    # TODO-4: - If the user has entered a letter they've already guessed, print the letter and let them know.
 
-if level_choice == "3":
-        chosen_word = random.choice(hard_word_list)
-        placeholder = ""
-        word_length = len(chosen_word)
-        for position in range(word_length):
-            placeholder += "_"
-        print(f"The word is: {placeholder}")
+    display = ""
 
-        guesses_remaining = 6
-        correct_letters = []
-
-        while guesses_remaining > 0:
-            guess = input("Guess a letter: ").upper()
-
-            display = ""
-
-            if guess in chosen_word:
-                for letter in chosen_word:
-                    if letter == guess:
-                        display += letter
-                        correct_letters.append(guess)
-                    elif letter in correct_letters:
-                        display += letter
-                    else:
-                        display += "_"
-                print(f"\n{display}")
-
-                if "_" not in display:
-                     win_msg()
-                     break
-            else:
-                guesses_remaining -= 1
-                if guesses_remaining > 1:
-                    print(f"\nTry again. {guesses_remaining} guesses remaining.")
-                elif guesses_remaining == 1:
-                    print(f"\nTry again. {guesses_remaining} guess remaining.")
-                elif guesses_remaining == 0:
-                    game_over()
-                    break
+    for letter in chosen_word:
+        if letter == guess:
+            display += letter
+            correct_letters.append(guess)
+        elif letter in correct_letters:
+            display += letter
         else:
-            game_over()
-elif level_choice == "2":
-    chosen_word = random.choice(med_word_list)
-    placeholder = ""
-    word_length = len(chosen_word)
-    for position in range(word_length):
-        placeholder += "_"
-    print(f"The word is: {placeholder}")
+            display += "_"
 
-    guesses_remaining = 6
-    correct_letters = []
+    print("Word to guess: " + display)
 
-    while guesses_remaining > 0:
-        guess = input("Guess a letter: ").upper()
+    # TODO-5: - If the letter is not in the chosen_word, print out the letter and let them know it's not in the word.
+    #  e.g. You guessed d, that's not in the word. You lose a life.
 
-        display = ""
+    if guess not in chosen_word:
+        lives -= 1
 
-        if guess in chosen_word:
-            for letter in chosen_word:
-                if letter == guess:
-                    display += letter
-                    correct_letters.append(guess)
-                elif letter in correct_letters:
-                    display += letter
-                else:
-                    display += "_"
-            print(f"\n{display}")
+        if lives == 0:
+            game_over = True
 
-            if "_" not in display:
-                win_msg()
-                break
-        else:
-            guesses_remaining -= 1
-            if guesses_remaining > 1:
-                print(f"\nTry again. {guesses_remaining} guesses remaining.")
-            elif guesses_remaining == 1:
-                print(f"\nTry again. {guesses_remaining} guess remaining.")
-            elif guesses_remaining == 0:
-                game_over()
-                break
-    else:
-        game_over()
-else:
-    chosen_word = random.choice(easy_word_list)
-    placeholder = ""
-    word_length = len(chosen_word)
-    for position in range(word_length):
-        placeholder += "_"
-    print(f"The word is: {placeholder}")
+            # TODO 7: - Update the print statement below to give the user the correct word they were trying to guess.
+            print(f"***********************YOU LOSE**********************")
 
-    guesses_remaining = 6
-    correct_letters = []
+    if "_" not in display:
+        game_over = True
+        print("****************************YOU WIN****************************")
 
-    while guesses_remaining > 0:
-        guess = input("Guess a letter: ").upper()
-
-        display = ""
-
-        if guess in chosen_word:
-            for letter in chosen_word:
-                if letter == guess:
-                    display += letter
-                    correct_letters.append(guess)
-                elif letter in correct_letters:
-                    display += letter
-                else:
-                    display += "_"
-            print(f"\n{display}")
-
-            if "_" not in display:
-                win_msg()
-                break
-        else:
-            guesses_remaining -= 1
-            if guesses_remaining > 1:
-                print(f"\nTry again. {guesses_remaining} guesses remaining.")
-            elif guesses_remaining == 1:
-                print(f"\nTry again. {guesses_remaining} guess remaining.")
-            elif guesses_remaining == 0:
-                game_over()
-                break
-    else:
-        game_over()
+    # TODO-2: - Update the code below to use the stages List from the file hangman_art.py
+    print(stages[lives])
