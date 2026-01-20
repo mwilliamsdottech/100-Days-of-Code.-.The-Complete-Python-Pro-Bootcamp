@@ -3,4 +3,23 @@
 # TODO-3: Whether if new bids need to be added
 # TODO-4: Compare bids in dictionary
 
+bids = {
+    "name": "",
+    "bid_amount": 0,
+}
+
+new_bid = ""
+
+name = input("What is your name? ")
+bid_amount = input("What's your bid? ")
+
+
+#add name and bid amount to dictionary
+bids["name"] = name
+bids["bid_amount"] = bid_amount
+
+print(bids)
+
+new_bid = input("Are there more bidders? Yes | No ").lower()
+
 
