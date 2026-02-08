@@ -1,22 +1,32 @@
 # TODO-1: Ask the user for input
 # TODO-2: Save data into dictionary {name: price}
-# TODO-3: Whether if new bids need to be added
 # TODO-4: Compare bids in dictionary
+# TODO-3: Whether if new bids need to be added
 
-bids = {
-    "name": "",
-    "bid_amount": 0,
-}
+import art
+print(art.logo)
 
-while new_bid != "no":
+def find_highest_bidder(bidding_dictionary):
+    winner = ""
+    highest_bid = 0
+
+    for bidder in bidding_dictionary:
+        bid_amount = bidding_dictionary[bidder]
+        if bid_amount > highest_bid:
+            highest_bid = bid_amount
+            winner = bidder
+
+    print(f"\nThe winner is {winner} with a bid of ${highest_bid}")
+
+bids = {}
+continue_bidding = True
+while continue_bidding:
     name = input("What is your name? ")
-    bid_amount = input("What's your bid? ")
-
-    #add name and bid amount to dictionary
-    bids["name"] = name
-    bids["bid_amount"] = bid_amount
-
-    print(bids)
-
-new_bid = input("Are there more bidders? Yes? No? ").lower()
-
+    bid_amount = float(input("What is your bid? $"))
+    bids[name] = bid_amount
+    new_bid = input("\nAre there more bidders? Yes? No? ").lower()
+    if new_bid == "no":
+        continue_bidding = False
+        find_highest_bidder(bids)
+    elif new_bid == "yes":
+        print("\n" * 100) # This 'clears' the screen
