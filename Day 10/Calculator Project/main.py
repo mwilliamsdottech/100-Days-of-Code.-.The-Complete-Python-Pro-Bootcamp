@@ -21,4 +21,5 @@ n1 = input("\nEnter first number: ")
 operation = input("\nEnter + to add \nEnter - to subtract \nEnter * to multiply \nEnter / to divide \n\n:")
 n2 = input("\nEnter second number: ")
 
-if operation
+if operation == "+":
+    add(n1,n2)
