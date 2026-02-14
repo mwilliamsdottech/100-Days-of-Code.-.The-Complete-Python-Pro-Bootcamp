@@ -16,11 +16,15 @@ operations = {
     "*": multiply,
     "/": divide,
 }
+result = ""
+continue_with_result = True
 
-n1 = int(input("\nEnter first number: "))
-operation = input("\nEnter + to add \nEnter - to subtract \nEnter * to multiply \nEnter / to divide \n\n:")
-n2 = int(input("\nEnter second number: "))
-
+if result == "":
+    n1 = int(input("\nEnter first number: "))
+    operation = input("\nEnter + to add \nEnter - to subtract \nEnter * to multiply \nEnter / to divide \n\n:")
+    n2 = int(input("\nEnter second number: "))
+else:
+    print("dkfjfk")
 
 result = operations[operation](n1, n2)
 print(f"Total is {result}. ")
