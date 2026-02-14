@@ -17,9 +17,12 @@ operations = {
     "/": divide,
 }
 
-n1 = input("\nEnter first number: ")
+n1 = int(input("\nEnter first number: "))
 operation = input("\nEnter + to add \nEnter - to subtract \nEnter * to multiply \nEnter / to divide \n\n:")
-n2 = input("\nEnter second number: ")
+n2 = int(input("\nEnter second number: "))
 
-if operation == "+":
-    add(n1,n2)
+
+result = operations[operation](n1, n2)
+print(f"Total is {result}. ")
+
+cont_result = input("\nWould you like to continue using the previous result? Yes|No: ")
